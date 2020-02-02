@@ -28,7 +28,7 @@ def scrapper():
 				"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/53 "
 				"(KHTML, like Gecko) Chrome/15.0.87"
 			)
-			driver = webdriver.PhantomJS(desired_capabilities=dcap)
+			driver = webdriver.PhantomJS(ip=os.environ['OPENSHIFT_PYTHON_IP'],service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
 
 			#url='https://www.oddsportal.com/basketball/germany/bbl/results/'
 
