@@ -30,7 +30,7 @@ def scrapper():
 				"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/53 "
 				"(KHTML, like Gecko) Chrome/15.0.87"
 			)
-			driver = webdriver.PhantomJS(executable_path='/usr/libexec/s2i/assemble/phantomjs-1.1.4', service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
+			driver = webdriver.PhantomJS(executable_path=os.path.join(os.getenv('OPENSHIFT_DATA_DIR'), 'phantomjs', 'bin', 'phantomjs'), service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
 
 			#url='https://www.oddsportal.com/basketball/germany/bbl/results/'
 
@@ -53,8 +53,9 @@ def hello():
 	try:
 		dirpath = os.getcwd()
 		message = " - "
-		for filename in glob.iglob(dirpath + '**/*', recursive=True):
-			message += filename + " ...................... "
+		for currentpath, folders, files in os.walk('.'):
+			for file in files:
+				message +=os.path.join(currentpath, file)+" ............ "
 		
 		#foldername = os.path.basename(dirpath)
 		return message+" current directory is : " + dirpath
