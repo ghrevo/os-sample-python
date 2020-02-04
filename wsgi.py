@@ -29,7 +29,7 @@ def scrapper():
 				"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/53 "
 				"(KHTML, like Gecko) Chrome/15.0.87"
 			)
-			driver = webdriver.PhantomJS(executable_path='/usr/libexec/s2i/run', service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
+			driver = webdriver.PhantomJS(executable_path=require('path').dirname(process.env.PHANTOMJS_EXECUTABLE) + '/', service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
 
 			#url='https://www.oddsportal.com/basketball/germany/bbl/results/'
 
