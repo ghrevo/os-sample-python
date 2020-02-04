@@ -49,7 +49,9 @@ def scrapper():
 		
 @application.route("/", methods=['GET'])
 def hello():
-	return "Hello World!"
+	dirpath = os.getcwd()
+	foldername = os.path.basename(dirpath)
+	return "current directory is : " + dirpath+ " Directory name is : " + foldername
 	
 if __name__ == "__main__":
     application.run()
