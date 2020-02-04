@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import glob
 
 application = Flask(__name__)
 
@@ -29,7 +30,7 @@ def scrapper():
 				"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/53 "
 				"(KHTML, like Gecko) Chrome/15.0.87"
 			)
-			driver = webdriver.PhantomJS(executable_path='/opt/app-root/src', service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
+			driver = webdriver.PhantomJS(executable_path='/usr/libexec/s2i/assemble/phantomjs-1.1.4', service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
 
 			#url='https://www.oddsportal.com/basketball/germany/bbl/results/'
 
@@ -49,9 +50,17 @@ def scrapper():
 		
 @application.route("/", methods=['GET'])
 def hello():
-	dirpath = os.getcwd()
-	foldername = os.path.basename(dirpath)
-	return "current directory is : " + dirpath+ " Directory name is : " + foldername
+	try:
+		dirpath = os.getcwd()
+		message = " - "
+		for filename in glob.iglob(dirpath + '**/*', recursive=True):
+			message += filename + " ...................... "
+		
+		#foldername = os.path.basename(dirpath)
+		return message+" current directory is : " + dirpath
+		#return message+" current directory is : " + dirpath+ " Directory name is : " + foldername
+	except Exception as e:
+		return json.dumps([{"error": str(e)}])
 	
 if __name__ == "__main__":
     application.run()
