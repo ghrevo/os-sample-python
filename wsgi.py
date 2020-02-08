@@ -8,6 +8,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import glob
+import socket
+import sys
 
 application = Flask(__name__)
 
@@ -33,7 +35,8 @@ def scrapper():
 			path_phantom = r'H:\phantomjs\bin\phantomjs.exe'
 			path_phantom2 = r'/usr/libexec/s2i/assemble/phantomjs-1.1.4'
 			path_phantom3 = r"/usr/bin/phantomjs"
-			driver = webdriver.PhantomJS(executable_path=path_phantom2, service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
+			path_phantom4 = r"/phantomjs"
+			driver = webdriver.PhantomJS(executable_path=path_phantom4, service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
 #phantomPath: require('path').dirname(process.env.PHANTOMJS_EXECUTABLE) + '/'
 			#url='https://www.oddsportal.com/basketball/germany/bbl/results/'
 
@@ -54,9 +57,15 @@ def scrapper():
 @application.route("/", methods=['GET'])
 def hello():
 	try:
+		#hostname = sys.argv[1]
+		#ip = socket.gethostbyname(hostname)
+		hostname = socket.gethostname() 
+		ip = socket.gethostbyname(hostname)
+		#message = json.dumps(sys.argv)
+		message = 'Hostname: '+ hostname+ '\n' 'IP: '+ ip+' |||||||   '
 		dirpath = os.getcwd()
 		path = "../"
-		message = " - "
+		#message = " - "
 		for root,d_names,f_names in os.walk(path):
 			for f in f_names:
 				message +=os.path.join(root, f)+" ............"+ os.linesep
