@@ -30,8 +30,11 @@ def scrapper():
 				"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/53 "
 				"(KHTML, like Gecko) Chrome/15.0.87"
 			)
-			driver = webdriver.PhantomJS(executable_path=os.path.join(os.getenv('OPENSHIFT_DATA_DIR'), 'phantomjs', 'bin', 'phantomjs'), service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
-
+			path_phantom = r'H:\phantomjs\bin\phantomjs.exe'
+			path_phantom2 = r'/usr/libexec/s2i/assemble/phantomjs-1.1.4'
+			path_phantom3 = r"/usr/bin/phantomjs"
+			driver = webdriver.PhantomJS(executable_path=path_phantom2, service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
+#phantomPath: require('path').dirname(process.env.PHANTOMJS_EXECUTABLE) + '/'
 			#url='https://www.oddsportal.com/basketball/germany/bbl/results/'
 
 			driver.get(url)
@@ -52,13 +55,15 @@ def scrapper():
 def hello():
 	try:
 		dirpath = os.getcwd()
+		path = "./"
 		message = " - "
-		for currentpath, folders, files in os.walk('.'):
-			for file in files:
-				message +=os.path.join(currentpath, file)+" ............ "
-		
+		for root,d_names,f_names in os.walk(path):
+			for f in f_names:
+				message +=os.path.join(root, f)+" ............"+ os.linesep
+
+		#path = "/"#root of C
 		#foldername = os.path.basename(dirpath)
-		return message+" current directory is : " + dirpath
+		return message
 		#return message+" current directory is : " + dirpath+ " Directory name is : " + foldername
 	except Exception as e:
 		return json.dumps([{"error": str(e)}])
