@@ -92,7 +92,9 @@ def scrapper():
 			path_phantom4 = os.path.join('./phantomjs.exe')
 			path_phantom5 = os.path.join('./phantomjs')
 			port = 0
-			ip = 'http://10.130.16.26'
+			hostname = socket.gethostname() 
+			ip = socket.gethostbyname(hostname)
+			#ip = 'http://10.130.16.26'
 			driver = MyPhantomWebDriver(executable_path=path_phantom5, ip=ip, port=port, desired_capabilities=dcap, service_args=['--ignore-ssl-errors=true'])
 
 			#driver = webdriver.PhantomJS(executable_path=path_phantom4, service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
