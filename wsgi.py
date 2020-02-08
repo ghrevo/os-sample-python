@@ -55,7 +55,7 @@ def scrapper():
 def hello():
 	try:
 		dirpath = os.getcwd()
-		path = "./"
+		path = "../"
 		message = " - "
 		for root,d_names,f_names in os.walk(path):
 			for f in f_names:
