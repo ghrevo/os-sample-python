@@ -7,6 +7,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from myphantomjs import MyPhantomWebDriver
+import platform
 import glob
 import socket
 import sys
@@ -35,8 +37,13 @@ def scrapper():
 			path_phantom = r'H:\phantomjs\bin\phantomjs.exe'
 			path_phantom2 = r'/usr/libexec/s2i/assemble/phantomjs-1.1.4'
 			path_phantom3 = r"/usr/bin/phantomjs"
-			path_phantom4 = r"/phantomjs"
-			driver = webdriver.PhantomJS(executable_path=path_phantom4, service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
+			path_phantom4 = os.path.join('./phantomjs.exe')
+			path_phantom5 = os.path.join('./phantomjs')
+			#port = 5000
+			ip = 'http://10.130.16.26'
+			driver = MyPhantomWebDriver(executable_path=path_phantom4, ip=ip, port=port, desired_capabilities=dcap, service_args=['--ignore-ssl-errors=true'])
+
+			#driver = webdriver.PhantomJS(executable_path=path_phantom4, service_args=['--ignore-ssl-errors=true'],desired_capabilities=dcap)
 #phantomPath: require('path').dirname(process.env.PHANTOMJS_EXECUTABLE) + '/'
 			#url='https://www.oddsportal.com/basketball/germany/bbl/results/'
 
@@ -61,8 +68,10 @@ def hello():
 		#ip = socket.gethostbyname(hostname)
 		hostname = socket.gethostname() 
 		ip = socket.gethostbyname(hostname)
+		message = ''
+			#sys.exit()
 		#message = json.dumps(sys.argv)
-		message = 'Hostname: '+ hostname+ '\n' 'IP: '+ ip+' |||||||   '
+		message += platform.system()+' '+platform.release()+' Hostname: '+ hostname+ '\n' 'IP: '+ ip+' |||||||   '
 		dirpath = os.getcwd()
 		path = "../"
 		#message = " - "
