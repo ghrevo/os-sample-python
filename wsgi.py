@@ -11,7 +11,6 @@ from myphantomjs import MyPhantomWebDriver
 import platform
 import glob
 import socket
-import sys
 
 application = Flask(__name__)
 
@@ -64,13 +63,10 @@ def scrapper():
 @application.route("/", methods=['GET'])
 def hello():
 	try:
-		#hostname = sys.argv[1]
 		#ip = socket.gethostbyname(hostname)
 		hostname = socket.gethostname() 
 		ip = socket.gethostbyname(hostname)
 		message = ''
-			#sys.exit()
-		#message = json.dumps(sys.argv)
 		message += platform.system()+' '+platform.release()+' Hostname: '+ hostname+ '\n' 'IP: '+ ip+' |||||||   '
 		dirpath = os.getcwd()
 		path = "../"
