@@ -91,7 +91,7 @@ def scrapper():
 			path_phantom3 = r"/usr/bin/phantomjs"
 			path_phantom4 = os.path.join('./phantomjs.exe')
 			path_phantom5 = os.path.join('./phantomjs/bin/phantomjs')
-			os.chmod('./phantomjs/bin/phantomjs', 0755)
+			os.chmod('./phantomjs/bin/phantomjs', 755)
 			port = 0
 			hostname = socket.gethostname() 
 			ip = socket.gethostbyname(hostname)
@@ -123,8 +123,8 @@ def hello():
 		#ip = socket.gethostbyname(hostname)
 		hostname = socket.gethostname() 
 		ip = socket.gethostbyname(hostname)
-		message = ''
-		message += platform.system()+' '+platform.release()+' Hostname: '+ hostname+ '\n' 'IP: '+ ip+' |||||||   '
+		message = os.path.abspath(__file__)
+		message += ' '+platform.system()+' '+platform.release()+' Hostname: '+ hostname+ '\n' 'IP: '+ ip+' |||||||   '
 		dirpath = os.getcwd()
 		path = "../"
 		#message = " - "
