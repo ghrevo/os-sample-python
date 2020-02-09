@@ -90,8 +90,8 @@ def scrapper():
 			path_phantom2 = r'/usr/libexec/s2i/assemble/phantomjs-1.1.4'
 			path_phantom3 = r"/usr/bin/phantomjs"
 			path_phantom4 = os.path.join('./phantomjs.exe')
-			path_phantom5 = os.path.join('./phantomjs/bin/phantomjs')
-			os.chmod('./phantomjs/bin/phantomjs', 755)
+			path_phantom5 = os.path.join('/opt/app-root/src/phantomjs/bin/phantomjs')
+			os.chmod('/opt/app-root/src/phantomjs/bin/phantomjs', 755)
 			port = 0
 			hostname = socket.gethostname() 
 			ip = socket.gethostbyname(hostname)
