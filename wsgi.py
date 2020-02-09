@@ -140,3 +140,10 @@ def hello():
 	
 if __name__ == "__main__":
     application.run()
+
+#oc rsh os-sample-python-85cd747f5-pmfpx
+#oc rsync ./files os-sample-python-85cd747f5-pmfpx:/src
+#oc rsync C:\Users\IVAN\Documents\PythonPrograms\openshift\os-sample-python\files os-sample-python-85cd747f5-pmfpx:/src
+#oc rsync --token=Yad_spcjq_U6_Tps4NYs0TR5jhKnds4JHqUJvWjaKaI C:\Users\IVAN\Documents\PythonPrograms\openshift\os-sample-python\files\ os-sample-python-85cd747f5-pmfpx:/ --no-perms
+#oc rsync --insecure-skip-tls-verify=true --token=Yad_spcjq_U6_Tps4NYs0TR5jhKnds4JHqUJvWjaKaI C:\Users\IVAN\Documents\PythonPrograms\openshift\os-sample-python\files\ os-sample-python-85cd747f5-pmfpx:/ --no-perms
+#oc rsync  --no-perms --insecure-skip-tls-verify=true --token=Yad_spcjq_U6_Tps4NYs0TR5jhKnds4JHqUJvWjaKaI C:\Users\IVAN\Documents\PythonPrograms\openshift\os-sample-python\phantomjs\bin\ os-sample-python-d4686d8ff-9rqh7:/opt/app-root/phantomjs/bin/
